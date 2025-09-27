@@ -1,0 +1,147 @@
+<div class="space-y-3.5 md:space-y-5" x-data="{
+    items: [
+        {
+            id: 0,
+            subTitle: 'Artwork Handover',
+            title: 'Toni Kroos',
+            description: 'A tribute artwork capturing Toni Kroos\'s legendary career, personally presented to him.',
+            url: '/portfolio/toni-kroos',
+            img: '/assets/images/portfolio/toni-kroos-artwork.png'
+        },
+        {
+            id: 1,
+            subTitle: 'Social Media Post',
+            title: 'Lewis Hamilton',
+            description: 'A celebratory artwork for Lewis Hamilton\'s 100th pole position.',
+            url: '/portfolio/lewis-hamilton',
+            img: '/assets/images/portfolio/lewis-hamilton-poles.png'
+        },
+        {
+            id: 2,
+            subTitle: 'Collection',
+            title: 'The Icon League',
+            description: 'Visuals created for Toni Kroos and Elias Nerlich\'s Icon League.',
+            url: '/portfolio/icon-league',
+            img: '/assets/images/portfolio/icon-league.png'
+        },
+        {
+            id: 3,
+            subTitle: 'Collection',
+            title: 'Dennis Schröder',
+            description: 'Graphic Design support for Dennis Schröder across social media and YouTube.',
+            url: '/portfolio/dennis-schroder',
+            img: '/assets/images/portfolio/dennis-schroder.png'
+        },
+        {
+            id: 4,
+            subTitle: 'Artwork Handover',
+            title: 'Jeremie Frimpong',
+            description: 'A personal artwork celebrating Jeremie Frimpong\'s football journey.',
+            url: '/portfolio/jeremie-frimpong',
+            img: '/assets/images/portfolio/jeremie-frimpong.png'
+        },
+        {
+            id: 5,
+            subTitle: 'Social Media Post',
+            title: 'FC Schalke 04',
+            description: 'A celebratory artwork honoring Schalke\'s milestone of 200,000 members.',
+            url: '/portfolio/schalke-04',
+            img: '/assets/images/portfolio/schalke-04.png'
+        },
+        {
+            id: 6,
+            subTitle: 'Collection',
+            title: 'Raymond Representation',
+            description: 'Building the visual foundation and ongoing creative support for a sports and entertainment agency.',
+            url: '/portfolio/raymond-representation',
+            img: '/assets/images/portfolio/personal-work.png',
+            activeImg: '/assets/images/portfolio/personal-work-color.png'
+        },
+        {
+            id: 7,
+            subTitle: 'Collection',
+            title: 'SEABOB',
+            description: 'Creating high-end visuals and marketing materials, including collaborations with Studio F. A. Porsche and Automobili Lamborghini.',
+            url: '/portfolio/seabob',
+            img: '/assets/images/portfolio/seabob.png'
+        },
+        {
+            id: 8,
+            subTitle: 'Collection',
+            title: 'Ultimate Dropz',
+            description: 'Designing exclusive trading card visuals and premium storytelling experiences for legendary sports moments.',
+            url: '/portfolio/ultimate-dropz',
+            img: '/assets/images/portfolio/ultimate-dropz.png'
+        },
+        {
+            id: 9,
+            subTitle: 'Artwork Handover',
+            title: 'Dean Schneider',
+            description: 'A personal artwork uniting his animal family and home, personally presented to him in Zürich.',
+            url: '/portfolio/dean-schneider',
+            img: '/assets/images/portfolio/dean-schneider.png'
+        },
+        {
+            id: 10,
+            subTitle: 'Artwork Handover',
+            title: 'Isaiah Hartenstein',
+            description: 'A personal artwork honoring his historic NBA championship season, presented at iHartFest in Ulm.',
+            url: '/portfolio/isaiah-hartenstein',
+            img: '/assets/images/portfolio/hartenstein.png'
+        },
+        {
+            id: 11,
+            subTitle: 'Artwork Handover',
+            title: 'Robert Andrich',
+            description: 'Celebrating his journey from the lower leagues to Bundesliga titles and the Champions League.',
+            url: '/portfolio/robert-andrich',
+            img: '/assets/images/portfolio/robert-andrich.png'
+        },
+        {
+            id: 12,
+            subTitle: 'Artwork Handover',
+            title: 'Matthias Ginter',
+            description: 'Tracing the journey of a Freiburg homegrown talent to World Cup and DFB-Pokal glory.',
+            url: '/portfolio/matthias-ginter',
+            img: '/assets/images/portfolio/matthias-ginter.png'
+        },
+        {
+            id: 13,
+            subTitle: 'Collection',
+            title: 'Personal Work',
+            description: 'A collection of passion-driven artworks created beyond client projects.',
+            url: '/portfolio/personal-work',
+            img: '/assets/images/portfolio/reus-wembley.png'
+        }
+    ]
+    }" x-init="">
+
+    <template x-for="item in items">
+        <a :href="item.url"
+            class="flex items-center border border-[#C8FF00] hover:bg-[#C8FF00] transition-colors duration-300 hover:text-[#030A14] text-white rounded-[20px] md:gap-4 gap-2.5 [&.active]:bg-[#C8FF00] [&.active]:text-[#030A14] [&.active]:border-0 bg-black group"
+            :class="{ 'active': window.location.pathname === item.url }">
+            <div class="w-22 md:w-30.5 flex justify-end shrink-0">
+                <img :src="window.location.pathname === item.url && item.activeImg ? item.activeImg : item.img"
+                    alt="Toni Kroos Artwork" class="w-auto h-[76px] md:h-[107px] object-cover rounded"
+                    :class="item.activeImg && 'group-hover:!hidden'">
+                <template x-if="item.activeImg">
+                    <img :src="item.activeImg" alt="Toni Kroos Artwork"
+                        class="w-auto h-[76px] md:h-[107px] object-cover rounded hidden"
+                        :class="item.activeImg && 'group-hover:!block'">
+                </template>
+            </div>
+
+            <div class="flex-1">
+                <div class="font-antonio font-light text-[10px] md:text-[13px] leading-[1.2] tracking-[-0.05em] opacity-60"
+                    x-text="item.subTitle">
+                </div>
+                <h3 class="font-antonio font-bold text-[26px] md:text-[30px] leading-[1.2] tracking-[-0.05em] mb-1"
+                    x-text="item.title">
+                </h3>
+                <p class="font-antonio font-normal text-[9px] md:text-[12px] leading-[1.14] max-w-[312px] opacity-60"
+                    x-text="item.description">
+                </p>
+            </div>
+        </a>
+    </template>
+</div>
