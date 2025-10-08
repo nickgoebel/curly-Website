@@ -17,6 +17,7 @@
     "glob": "^11.0.3",
     "gsap": "^3.13.0",
     "rollup-plugin-copy": "^3.5.0",
+    "sp-supermarquee": "^3.1.2",
     "tailwindcss": "^4.1.13",
     "vanilla-infinite-marquee": "^1.0.13"
   }
