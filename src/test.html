@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/main.css">
+</head>
+
+<body>
+
+    <div class="w-full h-screen bg-red-300"></div>
+    <div class="w-full h-screen bg-green-300"></div>
+    <section class="overflow-x-hidden max-w-screen min-w-screen h-screen z-20 " id="gallaryBox">
+        <div class=" w-full max-w-screen min-w-screen justify-center origin-center overflow-hidden h-dvh text-white"
+            id="gallary">
+            <div class="w-full" id="marquee2">
+
+            </div>
+        </div>
+    </section>
+    <div class="w-full h-screen bg-yellow-300"></div>
+    <script src="https://cdn.jsdelivr.net/npm/sp-supermarquee@latest/dist/SuperMarquee.min.js"></script>
+    <script>
+        // ------------
+        // Marquee Start
+        // ------------
+        let item = `<img src="./assets/images/gallary/Dennis-WM-Sieg.png" alt=""
+                            class="w-[362px] object-contain mx-3 gallaryItem">
+                        <img src="./assets/images/gallary/DS17-Fahnenträger.png" alt=""
+                            class="w-[362px] object-contain mx-3 gallaryItem">
+                        <img src="./assets/images/gallary/Final-8.png" alt=""
+                            class="w-[362px] object-contain mx-3 gallaryItem">
+                        <img src="./assets/images/gallary/Frimpong.png" alt=""
+                            class="w-[362px] object-contain mx-3 gallaryItem">
+                        <img src="./assets/images/gallary/IconLeague-Season2.png" alt=""
+                            class="w-[362px] object-contain mx-3 gallaryItem">
+                        <img src="./assets/images/gallary/Kawhi.png" alt=""
+                            class="w-[362px] object-contain mx-3 gallaryItem">
+                        <img src="./assets/images/gallary/Lewis.png" alt=""
+                            class="w-[362px] object-contain mx-3 gallaryItem">
+                        <img src="./assets/images/gallary/Reus.png" alt=""
+                            class="w-[362px] object-contain mx-3 gallaryItem">
+                        <img src="./assets/images/gallary/Streamingwoche.png" alt=""
+                            class="w-[362px] object-contain mx-3 gallaryItem">
+                        <img src="./assets/images/gallary/Toni Kroos.png" alt=""
+                            class="w-[362px] object-contain mx-3 gallaryItem">
+                        <img src="./assets/images/gallary/Schalke_200K 3.png" alt=""
+                            class="w-[362px] object-contain mx-3 gallaryItem">`;
+        let elm = document.getElementById("marquee2");
+        const mySuperMarquee = new SuperMarquee(elm, {
+            content: item,
+        });
+        // ------------
+        // Marquee End
+        // ------------
+    </script>
+
+    <!-- <script type="module">
+        import marquee from 'https://cdn.jsdelivr.net/npm/vanilla-marquee/dist/vanilla-marquee.js';
+        window.addEventListener("load", () => {
+            const marquee2 = new marquee(document.getElementById("marquee2"), {
+                direction: "right",
+                duplicated: true,
+                gap: 24,
+                speed: 50,
+                startVisible: true,
+                delayBeforeStart: 1000,
+                // Keep this false so GSAP controls the recalculation
+                recalcResize: true,
+                css3easing: "linear",
+            });
+        });
+    </script> -->
+
+</body>
+
+</html>

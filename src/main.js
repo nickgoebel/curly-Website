@@ -1,5 +1,6 @@
 import "./assets/css/main.css";
 import marquee from "https://cdn.jsdelivr.net/npm/vanilla-marquee/dist/vanilla-marquee.js";
+import SuperMarquee from "sp-supermarquee";
 import Alpine from "alpinejs";
 import "./assets/js/cursorPointer";
 import "./assets/js/breakText";
@@ -9,6 +10,7 @@ import "./assets/js/aboutGsap";
 import "./assets/js/gallaryGsap";
 import "./assets/js/ctaGsap";
 import "./assets/js/footerGsap";
+// import "./assets/js/marquee";
 
 window.Alpine = Alpine;
 Alpine.start();
@@ -38,19 +40,90 @@ new marquee(document.getElementById("marquee"), {
   css3easing: "linear",
 });
 
-window.addEventListener("load", () => {
-  const marquee2 = new marquee(document.getElementById("marquee2"), {
-    direction: "right",
-    duplicated: true,
-    gap: 24,
-    speed: 50,
-    startVisible: true,
-    delayBeforeStart: 1000,
-    // Keep this false so GSAP controls the recalculation
-    recalcResize: true,
-    css3easing: "linear",
-  });
-});
+// window.addEventListener("load", () => {
+//   const marquee2 = new marquee(document.getElementById("marquee2"), {
+//     direction: "right",
+//     duplicated: true,
+//     gap: 24,
+//     speed: 50,
+//     startVisible: true,
+//     delayBeforeStart: 1000,
+//     // Keep this false so GSAP controls the recalculation
+//     recalcResize: true,
+//     css3easing: "linear",
+//   });
+// });
+
+// ------------
+// Marquee Start
+// ------------
+(function () {
+  let item = `<img src="./assets/images/gallary/Dennis-WM-Sieg.png" alt=""
+                                class="w-[362px] object-contain mx-3 gallaryItem">
+                            <img src="./assets/images/gallary/DS17-Fahnenträger.png" alt=""
+                                class="w-[362px] object-contain mx-3 gallaryItem">
+                            <img src="./assets/images/gallary/Final-8.png" alt=""
+                                class="w-[362px] object-contain mx-3 gallaryItem">
+                            <img src="./assets/images/gallary/Frimpong.png" alt=""
+                                class="w-[362px] object-contain mx-3 gallaryItem">
+                            <img src="./assets/images/gallary/IconLeague-Season2.png" alt=""
+                                class="w-[362px] object-contain mx-3 gallaryItem">
+                            <img src="./assets/images/gallary/Kawhi.png" alt=""
+                                class="w-[362px] object-contain mx-3 gallaryItem">
+                            <img src="./assets/images/gallary/Lewis.png" alt=""
+                                class="w-[362px] object-contain mx-3 gallaryItem">
+                            <img src="./assets/images/gallary/Reus.png" alt=""
+                                class="w-[362px] object-contain mx-3 gallaryItem">
+                            <img src="./assets/images/gallary/Streamingwoche.png" alt=""
+                                class="w-[362px] object-contain mx-3 gallaryItem">
+                            <img src="./assets/images/gallary/Toni Kroos.png" alt=""
+                                class="w-[362px] object-contain mx-3 gallaryItem">
+                            <img src="./assets/images/gallary/Schalke_200K 3.png" alt=""
+                                class="w-[362px] object-contain mx-3 gallaryItem">`;
+  let elm = document.getElementById("marquee2");
+  setTimeout(() => {
+    const mySuperMarquee = new SuperMarquee(elm, {
+      content: item,
+    });
+  }, 20);
+})();
+
+(function () {
+  let item = `  <img src="./assets/images/clients/AVIS1on.png" alt="" class="w-[206px] md:w-[236px] mx-10 self-center">
+                            <img src="./assets/images/clients/DS17.png" alt="" class="w-[131px] md:w-[161px] mx-10 self-center">
+                            <img src="./assets/images/clients/Logo_SEABOB_W.png" alt="" class="w-[275px] md:w-[305px] mx-10 self-center">
+                            <img src="./assets/images/clients/Ultimate_Dropz_Logo_WS (2).png" alt=""
+                                class="w-[100px] md:w-[130px] mx-10 self-center">
+                            <img src="./assets/images/clients/fanatics-licensing-management-schalke-logo.png" alt=""
+                                class="w-[47px] md:w-[77px] mx-10 self-center">
+                            <img src="./assets/images/clients/TIL-logo-composite-1c-standard-RGB.png" alt=""
+                                class="w-[148px] md:w-[178px] mx-10 self-center">
+                            <img src="./assets/images/clients/Lewis-Hamilton-Logo-WHITE.png" alt=""
+                                class="w-[114px] md:w-[144px] mx-10 self-center">
+                            <img src="./assets/images/clients/Logo-White.png" alt="" class="w-[60px] md:w-[90px] mx-10 self-center">
+
+                            <!-- Duplicate -->
+                            <img src="./assets/images/clients/AVIS1on.png" alt="" class="w-[206px] md:w-[236px] mx-10 self-center">
+                            <img src="./assets/images/clients/DS17.png" alt="" class="w-[131px] md:w-[161px] mx-10 self-center">
+                            <img src="./assets/images/clients/Logo_SEABOB_W.png" alt="" class="w-[275px] md:w-[305px] mx-10 self-center">
+                            <img src="./assets/images/clients/Ultimate_Dropz_Logo_WS (2).png" alt=""
+                                class="w-[100px] md:w-[130px] mx-10 self-center">
+                            <img src="./assets/images/clients/fanatics-licensing-management-schalke-logo.png" alt=""
+                                class="w-[47px] md:w-[77px] mx-10 self-center">
+                            <img src="./assets/images/clients/TIL-logo-composite-1c-standard-RGB.png" alt=""
+                                class="w-[148px] md:w-[178px] mx-10 self-center">
+                            <img src="./assets/images/clients/Lewis-Hamilton-Logo-WHITE.png" alt=""
+                                class="w-[114px] md:w-[144px] mx-10 self-center">
+                            <img src="./assets/images/clients/Logo-White.png" alt="" class="w-[60px] md:w-[90px] mx-10 self-center">`;
+  let elm = document.getElementById("marquee");
+  setTimeout(() => {
+    const mySuperMarquee = new SuperMarquee(elm, {
+      content: item,
+    });
+  }, 20);
+})();
+// Marquee End
+// ------------
 
 // Ensure GSAP and plugins are registered first!
 // gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);

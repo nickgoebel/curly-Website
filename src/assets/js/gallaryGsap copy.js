@@ -11,15 +11,15 @@ function setupGallaryAnimation() {
 
   // 2. Clear any existing ScrollTrigger animation before re-creating it
   // This is crucial for cleanup during window resize/refresh
-  if (window.gsap && window.gsap.getTweensOf(gallary).length) {
-    gsap.killTweensOf(gallary);
-  }
-  if (window.gsap && window.gsap.ScrollTrigger) {
-    const trigger = ScrollTrigger.getById("gallary-scale");
-    if (trigger) {
-      trigger.kill();
-    }
-  }
+  //   if (window.gsap && window.gsap.getTweensOf(gallary).length) {
+  //     gsap.killTweensOf(gallary);
+  //   }
+  //   if (window.gsap && window.gsap.ScrollTrigger) {
+  //     const trigger = ScrollTrigger.getById("gallary-scale");
+  //     if (trigger) {
+  //       trigger.kill();
+  //     }
+  //   }
 
   // --- MANUAL SCALE CALCULATION ---
 
@@ -32,7 +32,7 @@ function setupGallaryAnimation() {
 
   // c. Calculate the maximum scale factor
   // Add a small buffer (e.g., 0.999) to ensure it never visibly exceeds the edge
-  const maxScale = (targetHeight / initialHeight) * 0.999;
+  const maxScale = (targetHeight / initialHeight) * 1;
 
   // ---------------------------------
 
@@ -60,10 +60,10 @@ function setupGallaryAnimation() {
 }
 
 // Initial setup after a small delay to ensure all elements are rendered
+setTimeout(setupGallaryAnimation, 50);
 
 // Setup the window resize listener
-window.addEventListener("load", () => {
-  setTimeout(setupGallaryAnimation, 300);
+window.addEventListener("resize", () => {
   // Re-run the setup function on resize.
   // This recalculates 'maxScale' and re-initializes the GSAP animation.
   //   setupGallaryAnimation();
