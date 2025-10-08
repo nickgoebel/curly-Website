@@ -12,7 +12,7 @@
 @layer base {
   body,
   html {
-    @apply bg-dark-1 font-antonio scroll-auto overscroll-y-none overflow-hidden;
+    @apply bg-dark-1 font-antonio scroll-auto overscroll-y-none;
   }
 }
 
