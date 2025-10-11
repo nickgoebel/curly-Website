@@ -11,6 +11,8 @@ import "./assets/js/gallaryGsap";
 import "./assets/js/ctaGsap";
 import "./assets/js/footerGsap";
 // import "./assets/js/marquee";
+// import videojs from "video.js";
+// window.videojs = videojs;
 
 window.Alpine = Alpine;
 Alpine.start();
@@ -213,4 +215,79 @@ window.addEventListener("load", () => {
     // Use a small delay and call the correct function
     gsap.delayedCall(0.3, goToAnchor, [window.location.hash]);
   }
+});
+
+// // Autoplay all video elements on the page when DOM is ready
+// // Import video.js if available via global script tag (skip here, but assume it's loaded)
+// // Autoplay all video elements using video.js (if available), with buffering behavior
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   // Find all video elements (with/without video.js initialized)
+//   const videos = document.querySelectorAll("video");
+
+//   videos.forEach((video) => {
+//     video.oncanplay = function () {
+//       video.play();
+//     };
+//     // If video.js is available, initialize player
+//     if (window.videojs) {
+//       // If not already initialized
+//       let player;
+//       if (!video.player) {
+//         player = window.videojs(video, {
+//           autoplay: true,
+//           controls: true,
+//           preload: "auto",
+//         });
+//         video.player = player;
+//       } else {
+//         player = video.player;
+//       }
+//       // Try play via video.js API
+//       player.ready(function () {
+//         try {
+//           player.play();
+//         } catch (err) {
+//           // Autoplay might be blocked by browser
+//         }
+//       });
+//     } else {
+//       // Native video fallback: try autoplay and preload
+//       video.autoplay = true;
+//       video.preload = "auto";
+//       const playPromise = video.play();
+//       if (playPromise && typeof playPromise.then === "function") {
+//         playPromise.catch(() => {}); // Ignore if blocked
+//       }
+//     }
+//   });
+// });
+// Find all video elements on the page
+const videos = document.querySelectorAll("video");
+
+videos.forEach((video) => {
+  // IMPORTANT: For autoplay to work reliably in most modern browsers (Chrome, Firefox, Safari),
+  // the video must be muted.
+  video.muted = true;
+
+  // This tells the browser it can start downloading video data as soon as possible.
+  // This is key for "buffer play".
+  video.preload = "auto";
+
+  // Set up an event listener to play the video as soon as it can be played
+  video.oncanplay = function () {
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          console.log("Video playback started successfully.");
+        })
+        .catch((err) => {
+          // Autoplay was prevented. This is common if the video isn't muted or the user
+          // hasn't interacted with the page yet.
+          console.error("Video autoplay was blocked by the browser:", err);
+          // You could optionally show a custom play button here to let the user start it manually.
+        });
+    }
+  };
 });

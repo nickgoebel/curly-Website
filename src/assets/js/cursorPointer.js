@@ -1,6 +1,7 @@
 /**
  * Custom Cursor Implementation - FINAL AND DEBOUNCED FIX (V5)
  * Adds a 500ms debounce/delay check for color contrast when the mouse stops moving.
+ * MODIFIED to hide/show the cursor when the mouse leaves/enters the window.
  */
 (function () {
   // 1. Configuration
@@ -8,7 +9,7 @@
   const HOVER_SIZE = "20px";
   const DEFAULT_COLOR = "#C8FF00"; // The cursor's default color
   const CONTRAST_COLOR = "#FFFFFF"; // White for contrast
-  const DEBOUNCE_DELAY = 500; // Check delay after mouse stops (in milliseconds)
+  const DEBOUNCE_DELAY = 350; // Check delay after mouse stops (in milliseconds)
 
   // Selectors for elements that trigger the HOVER SIZE change (Interactive)
   const HOVER_SIZE_SELECTORS = 'a, button, [role="button"], [onclick], [href]';
@@ -37,10 +38,12 @@
   // 3. Create and Inject the Cursor Element
   const cursor = document.createElement("div");
   cursor.id = "customCursor";
-  cursor.className = "cursor hidden md:block";
+  // MODIFICATION START: Removed '!hidden' and added a new class for opacity control
+  cursor.className = "cursor cursor--hidden !hidden md:!block";
+  // MODIFICATION END
   document.body.appendChild(cursor);
 
-  // 4. Inject Necessary CSS (for brevity, keeping this section minimal)
+  // 4. Inject Necessary CSS
   const style = document.createElement("style");
   style.innerHTML = `
       body, ${COLOR_CHECK_SELECTORS} { cursor: none !important; }
@@ -48,11 +51,19 @@
           position: fixed; pointer-events: none; z-index: 9999; top: 0; left: 0;
           width: ${DEFAULT_SIZE}; height: ${DEFAULT_SIZE}; background-color: ${DEFAULT_COLOR};
           border-radius: 50%; transform: translate(-50%, -50%);
-          transition: width 0.2s ease-out, height 0.2s ease-out, background-color 0.2s ease-out;
+          /* MODIFICATION START: Added 'opacity' to the transition for smooth hiding/showing */
+          transition: width 0.2s ease-out, height 0.2s ease-out, background-color 0.2s ease-out, opacity 0.2s ease-out;
+          opacity: 1; /* Start with full opacity (will be overridden by .cursor--hidden) */
+          /* MODIFICATION END */
       }
+      /* MODIFICATION START: Added a new class to control visibility with opacity */
+      .cursor--hidden {
+          opacity: 0 !important;
+      }
+      /* MODIFICATION END */
       .cursor-hover { width: ${HOVER_SIZE} !important; height: ${HOVER_SIZE} !important; }
       .cursor-contrast { background-color: ${CONTRAST_COLOR} !important; }
-  `;
+    `;
   document.head.appendChild(style);
 
   // 5. Dynamic Color Check Logic
@@ -130,7 +141,9 @@
     const clientY = e.clientY;
 
     // A. Update Cursor Position (Always instant)
-    cursor.style.transform = `translate(${clientX}px, ${clientY}px)`;
+    // MODIFICATION START: Adjusted transform to work correctly with initial state
+    cursor.style.transform = `translate(${clientX}px, ${clientY}px) translate(-50%, -50%)`;
+    // MODIFICATION END
 
     // B. Run Size and Initial Color Check (Always instant for responsiveness)
     runChecks(clientX, clientY);
@@ -145,4 +158,18 @@
       runChecks(clientX, clientY);
     }, DEBOUNCE_DELAY);
   });
+
+  // MODIFICATION START: Added event listeners for mouse entering and leaving the window
+  // 7. Window Enter/Leave Logic
+  document.addEventListener("mousemove", () => {
+    cursor.classList.remove("cursor--hidden");
+  });
+  document.addEventListener("mouseenter", () => {
+    cursor.classList.remove("cursor--hidden");
+  });
+
+  document.addEventListener("mouseleave", () => {
+    cursor.classList.add("cursor--hidden");
+  });
+  // MODIFICATION END
 })();
